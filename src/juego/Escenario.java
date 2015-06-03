@@ -125,8 +125,7 @@ public class Escenario extends javax.swing.JFrame {
     }
 
     public void Cargador() {
-        if (contBalas == 0){
-            JOptionPane.showMessageDialog(null, "NO HAY MUNICION");
+        if (contBalas == 0) {
             escenario[12][20].setIcon(new ImageIcon(getClass().getResource("/Imagenes/C.png")));
             panelEscenario.add(escenario[12][20]);
             escenario[13][20].setIcon(new ImageIcon(getClass().getResource("/Imagenes/C.png")));
@@ -219,9 +218,8 @@ public class Escenario extends javax.swing.JFrame {
             panelEscenario.add(escenario[16][20]);
             escenario[17][20].setIcon(new ImageIcon(getClass().getResource("/Imagenes/BI.png")));
             panelEscenario.add(escenario[17][20]);
-        } 
-           
-        
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -287,10 +285,12 @@ public class Escenario extends javax.swing.JFrame {
                 label_bala.setVisible(true);
                 if (contBalas > 0) {
                     contBalas--;
+                } else {
+                    /*while(label_bala!=null){
+                     //label_bala.setBounds(escenario[personajeX][personajeY]+40,escenario[personajeX][personajeY]+20 10, 10);
+                     }*/
+                    JOptionPane.showMessageDialog(null, "NO HAY MUNICION");
                 }
-                /*while(label_bala!=null){
-                 //label_bala.setBounds(escenario[personajeX][personajeY]+40,escenario[personajeX][personajeY]+20 10, 10);
-                 }*/
                 System.out.println(contBalas);
                 Cargador();
 
@@ -313,8 +313,8 @@ public class Escenario extends javax.swing.JFrame {
 
                                 escenario[personajeX - 1][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeI));
                                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.bala));
-                                
-                                cargador=true;
+
+                                cargador = true;
                             }
 
                             System.out.println(personajeX - 1 + " " + personajeY);
@@ -380,7 +380,7 @@ public class Escenario extends javax.swing.JFrame {
                                     cargador = false;
                                     System.out.println(cargador);
                                 }
-                                
+
                             }
 
                             personajeX--;
@@ -405,11 +405,21 @@ public class Escenario extends javax.swing.JFrame {
                     if (escMatriz[personajeX + 1][personajeY] != Contenedor.zombieD) {
                         if (escMatriz[personajeX + 1][personajeY] != Contenedor.zombieI) {
 
-                            escMatriz[personajeX + 1][personajeY] = Contenedor.personajeD;
-                            escMatriz[personajeX][personajeY] = Contenedor.suelo;
+                            if (cargador == true) {
+                                escMatriz[personajeX + 1][personajeY] = Contenedor.personajeD;
+                                escMatriz[personajeX][personajeY] = Contenedor.suelo;
 
-                            escenario[personajeX + 1][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeD));
-                            escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                                escenario[personajeX + 1][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeD));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                            } else {
+                                escMatriz[personajeX + 1][personajeY] = Contenedor.personajeD;
+                                escMatriz[personajeX][personajeY] = Contenedor.bala;
+
+                                escenario[personajeX + 1][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeD));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.bala));
+
+                                cargador = true;
+                            }
 
                             System.out.println(personajeX + 1 + " " + personajeY);
                             if (escMatriz[personajeX + 2][personajeY] == Contenedor.moneda) {
@@ -463,11 +473,17 @@ public class Escenario extends javax.swing.JFrame {
                             }
 
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeD) {
-                                contBalas++;
-                                validarBX = 0;
-                                validarBY = 0;
-                                System.out.println(contBalas);
-                                Cargador();
+                                if (contBalas < 6) {
+                                    contBalas++;
+                                    validarBX = 0;
+                                    validarBY = 0;
+                                    System.out.println(contBalas);
+                                    Cargador();
+                                } else {
+                                    cargador = false;
+                                    System.out.println(cargador);
+                                }
+
                             }
 
                             personajeX++;
@@ -491,12 +507,22 @@ public class Escenario extends javax.swing.JFrame {
                 if (escMatriz[personajeX][personajeY - 1] != Contenedor.muro) {
                     if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieD) {
                         if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieI) {
+                            
+                            if (cargador == true) {
+                                escMatriz[personajeX][personajeY - 1] = Contenedor.personajeA;
+                                escMatriz[personajeX][personajeY] = Contenedor.suelo;
 
-                            escMatriz[personajeX][personajeY - 1] = Contenedor.personajeA;
-                            escMatriz[personajeX][personajeY] = Contenedor.suelo;
+                                escenario[personajeX][personajeY - 1].setIcon(crea.obtenerImagen(Contenedor.personajeA));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                            } else {
+                                escMatriz[personajeX][personajeY - 1] = Contenedor.personajeA;
+                                escMatriz[personajeX][personajeY] = Contenedor.bala;
 
-                            escenario[personajeX][personajeY - 1].setIcon(crea.obtenerImagen(Contenedor.personajeA));
-                            escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                                escenario[personajeX][personajeY - 1].setIcon(crea.obtenerImagen(Contenedor.personajeA));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.bala));
+
+                                cargador = true;
+                            }
 
                             System.out.println(personajeX + " " + (personajeY - 1));
                             if (escMatriz[personajeX][personajeY - 2] == Contenedor.moneda) {
@@ -551,11 +577,17 @@ public class Escenario extends javax.swing.JFrame {
                             }
 
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeA) {
-                                contBalas++;
-                                validarBX = 0;
-                                validarBY = 0;
-                                System.out.println(contBalas);
-                                Cargador();
+                                if (contBalas < 6) {
+                                    contBalas++;
+                                    validarBX = 0;
+                                    validarBY = 0;
+                                    System.out.println(contBalas);
+                                    Cargador();
+                                } else {
+                                    cargador = false;
+                                    System.out.println(cargador);
+                                }
+
                             }
                             personajeY--;
 
@@ -579,11 +611,21 @@ public class Escenario extends javax.swing.JFrame {
                     if (escMatriz[personajeX][personajeY + 1] != Contenedor.zombieD) {
                         if (escMatriz[personajeX][personajeY + 1] != Contenedor.zombieI) {
 
-                            escMatriz[personajeX][personajeY + 1] = Contenedor.personajeAb;
-                            escMatriz[personajeX][personajeY] = Contenedor.suelo;
+                            if (cargador == true) {
+                                escMatriz[personajeX][personajeY + 1] = Contenedor.personajeAb;
+                                escMatriz[personajeX][personajeY] = Contenedor.suelo;
 
-                            escenario[personajeX][personajeY + 1].setIcon(crea.obtenerImagen(Contenedor.personajeAb));
-                            escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                                escenario[personajeX][personajeY + 1].setIcon(crea.obtenerImagen(Contenedor.personajeAb));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.suelo));
+                            } else {
+                                escMatriz[personajeX][personajeY + 1] = Contenedor.personajeAb;
+                                escMatriz[personajeX][personajeY] = Contenedor.bala;
+
+                                escenario[personajeX][personajeY + 1].setIcon(crea.obtenerImagen(Contenedor.personajeAb));
+                                escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.bala));
+
+                                cargador = true;
+                            }
 
                             System.out.println(personajeX + " " + (personajeY + 1));
                             if (escMatriz[personajeX][personajeY + 2] == Contenedor.moneda) {
@@ -637,11 +679,17 @@ public class Escenario extends javax.swing.JFrame {
                             }
 
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeAb) {
-                                contBalas++;
-                                validarBX = 0;
-                                validarBY = 0;
-                                System.out.println(contBalas);
-                                Cargador();
+                                if (contBalas < 6) {
+                                    contBalas++;
+                                    validarBX = 0;
+                                    validarBY = 0;
+                                    System.out.println(contBalas);
+                                    Cargador();
+                                } else {
+                                    cargador = false;
+                                    System.out.println(cargador);
+                                }
+
                             }
                             personajeY++;
 

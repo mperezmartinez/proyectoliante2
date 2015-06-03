@@ -62,9 +62,9 @@ public class CrearEscenario{
             case Contenedor.sigX:
                 return new ImageIcon(getClass().getResource("/Imagenes/sigX.png"));
             case Contenedor.zombieD:
-                return new ImageIcon(getClass().getResource("/Imagenes/ZD.png"));
+                return new ImageIcon(getClass().getResource("/Imagenes/ZD.gif"));
             case Contenedor.zombieI:
-                return new ImageIcon(getClass().getResource("/Imagenes/ZI.png"));
+                return new ImageIcon(getClass().getResource("/Imagenes/ZI.gif"));
             case Contenedor.live:
                 return new ImageIcon(getClass().getResource("/Imagenes/L.gif"));
             case Contenedor.bala:
