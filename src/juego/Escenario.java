@@ -33,18 +33,16 @@ public class Escenario extends JFrame {
     private int[][] escMatriz = new int[numColumnas][numFilas];
     JLabel[][] escenario = new JLabel[numColumnas][numFilas];
 
-    public Escenario() {
+    public Escenario(int opc) {
 
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
+            
+        System.out.println(opc);
         
-        //map.mostrar();
-        
-        //map.mos();
-      
-        //label_bala.setVisible(false);
+        label_bala.setVisible(false);
 
-        escMatriz =crea.crearEscenario();
+        escMatriz =crea.crearEscenario(opc);
 
         cargarEscenario();
 
@@ -56,6 +54,10 @@ public class Escenario extends JFrame {
 
         Vida();
 
+    }
+
+    private Escenario() {
+        
     }
 
     private void cargarEscenario() {

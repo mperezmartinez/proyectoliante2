@@ -5,11 +5,8 @@ public class Juego {
     static CargarMapa map = new CargarMapa();
 
     public static void main(String[] args) {
-        //int[][] prueba;
-
-        //map.CargarMapa();
-        // prueba=map.devMapa();
-        Escenario esc = new Escenario();
+        int opc=2;
+        Escenario esc = new Escenario(opc);
         esc.setVisible(true);
 
     }

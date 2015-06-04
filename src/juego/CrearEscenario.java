@@ -18,8 +18,8 @@ public class CrearEscenario {
 
     }
 
-    public int[][] crearEscenario() {
-        esc=map.devMapa();
+    public int[][] crearEscenario(int opc) {
+        esc=map.devMapa(opc);
         return esc;
     }
 

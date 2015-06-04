@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * @author Aitor
  */
-public class BarraInferior extends Escenario {
+public class BarraInferior{
     
 
     
