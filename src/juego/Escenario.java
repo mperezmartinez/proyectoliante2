@@ -5,7 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Escenario extends javax.swing.JFrame {
-
+    
+    CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     Reproductor play = new Reproductor();
 //
@@ -35,6 +36,8 @@ public class Escenario extends javax.swing.JFrame {
 
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
+        
+        map.mostrar();
 
         label_bala.setVisible(false);
 
