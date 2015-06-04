@@ -5,45 +5,54 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CargarMapa {
+
+    File fichero = new File("mapa1.txt");
+    Scanner scan = null;
+
+    int[][] mapaNum = new int[20][22];
 
     public CargarMapa() {
 
     }
 
-    public void mostrar() {
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
 
+    public int[][] devMapa() {
+        int pos = 1;
         try {
-         // Apertura del fichero y creacion de BufferedReader para poder
-            // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("archivo.txt");
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
+            scan = new Scanner(fichero);
 
-            // Lectura del fichero
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                System.out.println(linea);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-         // En el finally cerramos el fichero, para asegurarnos
-            // que se cierra tanto si todo va bien como si salta 
-            // una excepcion.
-            try {
-                if (null != fr) {
-                    fr.close();
+            while (scan.hasNextLine()) {
+                
+
+                for (int c = 0; c < 20; c++) {
+                    String linea = scan.nextLine();
+                    String[] dividirLista = linea.split(" ");
+                    for (int f = 0; f < 22; f++) {
+
+                        mapaNum[c][f] = (Integer.parseInt(dividirLista[f]));
+                        System.out.println(pos + ":" + mapaNum[c][f]);
+                        pos++;
+
+                    }
+
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+
+            }
+        } catch (Exception except1) {
+            except1.printStackTrace();
+        } finally {
+            try {
+                if (scan != null) {
+                    scan.close();
+                }
+            } catch (Exception except2) {
+                except2.printStackTrace();
             }
         }
+        return mapaNum;
     }
 }
-
-

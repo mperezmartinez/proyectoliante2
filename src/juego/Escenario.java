@@ -1,17 +1,18 @@
 package juego;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class Escenario extends javax.swing.JFrame {
+public class Escenario extends JFrame {
     
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     Reproductor play = new Reproductor();
 //
-    private int numColumnas = 20;
-    private int numFilas = 22;
+    int numColumnas = 20;
+    int numFilas = 22;
     private int personajeX = 2;
     private int personajeY = 2;
 
@@ -37,11 +38,13 @@ public class Escenario extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
         
-        map.mostrar();
+        //map.mostrar();
+        
+        //map.mos();
+      
+        //label_bala.setVisible(false);
 
-        label_bala.setVisible(false);
-
-        escMatriz = crea.crearEscenario();
+        escMatriz =crea.crearEscenario();
 
         cargarEscenario();
 
