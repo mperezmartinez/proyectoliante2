@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class Escenario extends JFrame {
     
+    Disparo disp = new Disparo();
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     Reproductor play = new Reproductor();
@@ -231,7 +232,7 @@ public class Escenario extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         panelEscenario = new javax.swing.JPanel();
@@ -281,27 +282,17 @@ public class Escenario extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {                                 
 
         System.out.println(evt);
         System.out.println(contBalas);
         switch (evt.getKeyCode()) {
 
             case 32:
-                label_bala.setVisible(true);
-                if (contBalas > 0) {
-                    contBalas--;
-                } else {
-                    /*while(label_bala!=null){
-                     //label_bala.setBounds(escenario[personajeX][personajeY]+40,escenario[personajeX][personajeY]+20 10, 10);
-                     }*/
-                    JOptionPane.showMessageDialog(null, "NO HAY MUNICION");
-                }
-                System.out.println(contBalas);
-                Cargador();
-
+                disp.disparar();
+                
                 break;
             case 37:    //izq
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeI));
@@ -718,7 +709,7 @@ public class Escenario extends JFrame {
         }
 
 
-    }//GEN-LAST:event_formKeyReleased
+    }                                
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -752,8 +743,8 @@ public class Escenario extends JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel label_bala;
     private javax.swing.JPanel panelEscenario;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
