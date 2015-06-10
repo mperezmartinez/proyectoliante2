@@ -5,10 +5,17 @@ import javazoom.jl.decoder.JavaLayerException;
 
 public class Juego {
 
-    static CargarMapa map = new CargarMapa();
+    static int opc;
+    CargarMapa map = new CargarMapa();
 
-    public static void main(String[] args) throws JavaLayerException, FileNotFoundException, InterruptedException {
-        int opc=1;
+    public static void main(String[] args) {
+        
+        Menu menu = new Menu(opc);
+
+    }
+
+    public void ejecutar(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
+
         Escenario esc = new Escenario(opc);
         esc.setVisible(true);
 

@@ -12,7 +12,6 @@ public class Reproductor {
  
    public void sonido() throws FileNotFoundException,
          JavaLayerException, InterruptedException {
-       
       final Player pl = new Player(new FileInputStream(
             "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/Dragula.mp3"));
  
@@ -21,7 +20,7 @@ public class Reproductor {
             try {
                while (true) {
                   if (!pausa) {
-                     if (!pl.play(2)) {
+                     if (!pl.play(1)) {
                         break;
                      }
                   }

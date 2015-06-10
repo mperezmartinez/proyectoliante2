@@ -44,6 +44,7 @@ public class Escenario extends JFrame {
     public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
         initComponents();
+        
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
 
         System.out.println(opc);
