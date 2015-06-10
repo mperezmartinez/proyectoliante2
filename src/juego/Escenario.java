@@ -28,6 +28,11 @@ public class Escenario extends JFrame {
     private int validarBX;
     private int validarBY;
 
+    boolean arriba = false;
+    boolean abajo = false;
+    boolean derecha = true;
+    boolean izquierda = false;
+
     private int[][] escMatriz = new int[numColumnas][numFilas];
     JLabel[][] escenario = new JLabel[numColumnas][numFilas];
 
@@ -278,18 +283,13 @@ public class Escenario extends JFrame {
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {
 
-        boolean arriba;
-        boolean abajo;
-        boolean derecha;
-        boolean izquierda;
-
         System.out.println(evt);
         System.out.println(contBalas);
         switch (evt.getKeyCode()) {
 
             case 32:
 
-                disp = new Disparo(personajeX, personajeY);
+                disp = new Disparo(personajeX, personajeY, escenario, escMatriz, panelEscenario, arriba, abajo, derecha, izquierda);
                 contBalas = disp.cargador(contBalas);
 
                 break;

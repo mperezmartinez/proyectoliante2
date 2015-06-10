@@ -55,6 +55,8 @@ public class CrearEscenario {
                 return new ImageIcon(getClass().getResource("/Imagenes/B.gif"));
             case Contenedor.municion:
                 return new ImageIcon(getClass().getResource("/Imagenes/BI.png"));
+            case Contenedor.disparo:
+                return new ImageIcon(getClass().getResource("/Imagenes/D.png"));
             default:
                 return new ImageIcon(getClass().getResource("/Imagenes/C.png"));
         }

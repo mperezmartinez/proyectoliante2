@@ -6,6 +6,7 @@ public class Contenedor {
     public final static int muro = 1;
     public final static int bala = 2;
     public final static int moneda = 3;
+    public final static int disparo= 6;
 
     public final static int personajeD = 10;
     public final static int personajeI = 11;
