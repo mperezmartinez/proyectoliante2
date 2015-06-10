@@ -14,6 +14,7 @@ public class Menu implements ActionListener{
 
     JFrame marco;
     JPanel panel, panelA, panelB, panelC;
+    JLabel label;
     JButton jugar,salir;
     JComboBox mapa;
     JTable tabla;
@@ -28,42 +29,43 @@ public class Menu implements ActionListener{
     public Menu(int opc) {
         
         this.opc=opc;
+        
         marco = new JFrame();
         panel = new JPanel();
-        panel.add(this.crearPanelA());
+        label = new JLabel();
+        jugar = new JButton(" JUGAR ");
+        salir= new JButton(" SALIR ");
+        mapa = new JComboBox();
+        
+        
+        
         marco.add(panel);
+        panel.add(jugar);
+        panel.add(mapa);
+        panel.add(salir);
+        panel.add(label);
+        
+        mapa.addItem("Mapa 1");
+        mapa.addItem("Mapa 2");
+        mapa.addItem("Mapa 3");
+        
+        
+        
         marco.setSize(400, 400);
         marco.setResizable(false);
         marco.setLocationRelativeTo(null);
         marco.setVisible(true);
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        label.setIcon(new ImageIcon(getClass().getResource("/Imagenes/zombies.png")));
+
         marco.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
-
-    }
-
-    public JPanel crearPanelA() {
-        jugar = new JButton(" JUGAR ");
-        salir= new JButton(" SALIR ");
-        mapa = new JComboBox();
-        panelA = new JPanel();
-        panelA.setBackground(Color.red);
-        panelA.setBounds(0, 0, 400, 400);
-        mapa.addItem("Mapa 1");
-        mapa.addItem("Mapa 2");
-        mapa.addItem("Mapa 3");
         
         jugar.addActionListener(this);
         salir.addActionListener(this);
-        
-        panelA.add(jugar);
-        panelA.add(mapa);
-        panelA.add(salir);
-        
-        jugar.setBounds(20, 20, 50, 30);
 
-        return panelA;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
