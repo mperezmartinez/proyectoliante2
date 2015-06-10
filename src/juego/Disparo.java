@@ -29,20 +29,22 @@ public class Disparo {
     public Disparo(int personajeX, int personajeY, JLabel[][] escenario, int[][] escMatriz, JPanel panelEscenario, boolean arriba, boolean abajo, boolean derecha, boolean izquierda) {
 
         if (arriba == true) {
-        escenario[personajeX][personajeY-1].setIcon(crea.obtenerImagen(6));
-        panelEscenario.add(escenario[personajeX][personajeY-1]);
+            escenario[personajeX][personajeY - 1].setIcon(crea.obtenerImagen(6));
+            panelEscenario.add(escenario[personajeX][personajeY - 1]);
         }
         if (abajo == true) {
-        escenario[personajeX][personajeY+1].setIcon(crea.obtenerImagen(6));
-        panelEscenario.add(escenario[personajeX][personajeY+1]);
+            escenario[personajeX][personajeY + 1].setIcon(crea.obtenerImagen(6));
+            panelEscenario.add(escenario[personajeX][personajeY + 1]);
+            escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeAbG));
+            panelEscenario.add(escenario[personajeX][personajeY]);
         }
         if (derecha == true) {
-        escenario[personajeX+1][personajeY].setIcon(crea.obtenerImagen(6));
-        panelEscenario.add(escenario[personajeX+1][personajeY]);
+            escenario[personajeX + 1][personajeY].setIcon(crea.obtenerImagen(6));
+            panelEscenario.add(escenario[personajeX + 1][personajeY]);
         }
         if (izquierda == true) {
-        escenario[personajeX-1][personajeY].setIcon(crea.obtenerImagen(6));
-        panelEscenario.add(escenario[personajeX-1][personajeY]);
+            escenario[personajeX - 1][personajeY].setIcon(crea.obtenerImagen(6));
+            panelEscenario.add(escenario[personajeX - 1][personajeY]);
         }
 
     }

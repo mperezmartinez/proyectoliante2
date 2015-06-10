@@ -13,17 +13,15 @@ public class CrearEscenario {
     CargarMapa map = new CargarMapa();
 
     public CrearEscenario() {
-        
+
     }
     int numeros;
     int[][] esc = new int[20][22];
-    
+
     public int[][] crearEscenario(int opc) {
-        esc=map.devMapa(opc);
+        esc = map.devMapa(opc);
         return esc;
     }
-
-    
 
     public ImageIcon obtenerImagen(int nImg) {
         switch (nImg) {
@@ -57,6 +55,8 @@ public class CrearEscenario {
                 return new ImageIcon(getClass().getResource("/Imagenes/BI.png"));
             case Contenedor.disparo:
                 return new ImageIcon(getClass().getResource("/Imagenes/D.png"));
+            case Contenedor.personajeAbG:
+                return new ImageIcon(getClass().getResource("/Imagenes/PAb.gif"));
             default:
                 return new ImageIcon(getClass().getResource("/Imagenes/C.png"));
         }

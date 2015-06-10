@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 public class Escenario extends JFrame {
 
-    Reproductor play = new Reproductor();
-//
     int numColumnas = 20;
     int numFilas = 22;
     private int personajeX = 2;
@@ -39,6 +37,7 @@ public class Escenario extends JFrame {
     Disparo disp = null;
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
+    Reproductor play = new Reproductor();
 
     public Escenario(int opc) {
 
@@ -51,13 +50,13 @@ public class Escenario extends JFrame {
 
         cargarEscenario();
 
-        play.repSonido();
-
         Marcador();
 
-        Cargador();
+        Cargador(contBalas);
 
         Vida();
+        
+        
 
     }
 
@@ -137,7 +136,7 @@ public class Escenario extends JFrame {
         }
     }
 
-    public void Cargador() {
+    public void Cargador(int contBalas) {
         if (contBalas == 0) {
             escenario[12][20].setIcon(new ImageIcon(getClass().getResource("/Imagenes/C.png")));
             panelEscenario.add(escenario[12][20]);
@@ -291,6 +290,7 @@ public class Escenario extends JFrame {
 
                 disp = new Disparo(personajeX, personajeY, escenario, escMatriz, panelEscenario, arriba, abajo, derecha, izquierda);
                 contBalas = disp.cargador(contBalas);
+                Cargador(contBalas);
 
                 break;
             case 37:    //izq
@@ -378,7 +378,7 @@ public class Escenario extends JFrame {
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
-                                    Cargador();
+                                    Cargador(contBalas);
                                 } else {
                                     cargador = false;
                                     System.out.println(cargador);
@@ -487,7 +487,7 @@ public class Escenario extends JFrame {
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
-                                    Cargador();
+                                    Cargador(contBalas);
                                 } else {
                                     cargador = false;
                                     System.out.println(cargador);
@@ -597,7 +597,7 @@ public class Escenario extends JFrame {
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
-                                    Cargador();
+                                    Cargador(contBalas);
                                 } else {
                                     cargador = false;
                                     System.out.println(cargador);
@@ -705,7 +705,7 @@ public class Escenario extends JFrame {
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
-                                    Cargador();
+                                    Cargador(contBalas);
                                 } else {
                                     cargador = false;
                                     System.out.println(cargador);
