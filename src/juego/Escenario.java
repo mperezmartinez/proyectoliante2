@@ -1,9 +1,11 @@
 package juego;
 
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javazoom.jl.decoder.JavaLayerException;
 
 public class Escenario extends JFrame {
 
@@ -39,7 +41,7 @@ public class Escenario extends JFrame {
     CrearEscenario crea = new CrearEscenario();
     Reproductor play = new Reproductor();
 
-    public Escenario(int opc) {
+    public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
@@ -56,7 +58,7 @@ public class Escenario extends JFrame {
 
         Vida();
         
-        
+        play.sonido();
 
     }
 

@@ -8,13 +8,35 @@ import javazoom.jl.player.Player;
 
 public class Reproductor {
 
+ static boolean pausa = false;
  
-   public void Sonido() throws JavaLayerException, FileNotFoundException{
+   public void sonido() throws FileNotFoundException,
+         JavaLayerException, InterruptedException {
+       
+      final Player pl = new Player(new FileInputStream(
+            "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/Dragula.mp3"));
  
-      Player apl = new Player(new FileInputStream(
-              "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/ambiente.mp3"));
+      new Thread() {
+         public void run() {
+            try {
+               while (true) {
+                  if (!pausa) {
+                     if (!pl.play(2)) {
+                        break;
+                     }
+                  }
+               }
+            } catch (JavaLayerException e) {
+               e.printStackTrace();
+            }
+         }
+      }.start();
  
-      apl.play();
+      Thread.sleep(1000);
+      pausa = true;
+      System.out.println("pausado");
+      Thread.sleep(500);
+      pausa = false;
    }
 }
 
