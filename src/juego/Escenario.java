@@ -6,10 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Escenario extends JFrame {
-    
-    Disparo disp = new Disparo();
-    CargarMapa map = new CargarMapa();
-    CrearEscenario crea = new CrearEscenario();
+
     Reproductor play = new Reproductor();
 //
     int numColumnas = 20;
@@ -34,16 +31,18 @@ public class Escenario extends JFrame {
     private int[][] escMatriz = new int[numColumnas][numFilas];
     JLabel[][] escenario = new JLabel[numColumnas][numFilas];
 
+    Disparo disp = null;
+    CargarMapa map = new CargarMapa();
+    CrearEscenario crea = new CrearEscenario();
+
     public Escenario(int opc) {
 
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
-            
-        System.out.println(opc);
-        
-        label_bala.setVisible(false);
 
-        escMatriz =crea.crearEscenario(opc);
+        System.out.println(opc);
+
+        escMatriz = crea.crearEscenario(opc);
 
         cargarEscenario();
 
@@ -58,7 +57,7 @@ public class Escenario extends JFrame {
     }
 
     private Escenario() {
-        
+
     }
 
     private void cargarEscenario() {
@@ -236,7 +235,6 @@ public class Escenario extends JFrame {
     private void initComponents() {
 
         panelEscenario = new javax.swing.JPanel();
-        label_bala = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DUNGEON and ZOMBIES");
@@ -246,36 +244,30 @@ public class Escenario extends JFrame {
             }
         });
 
-        label_bala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bala.png"))); // NOI18N
-        label_bala.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        label_bala.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-
         javax.swing.GroupLayout panelEscenarioLayout = new javax.swing.GroupLayout(panelEscenario);
         panelEscenario.setLayout(panelEscenarioLayout);
         panelEscenarioLayout.setHorizontalGroup(
-            panelEscenarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEscenarioLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(label_bala)
-                .addContainerGap(657, Short.MAX_VALUE))
+                panelEscenarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEscenarioLayout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addContainerGap(657, Short.MAX_VALUE))
         );
         panelEscenarioLayout.setVerticalGroup(
-            panelEscenarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEscenarioLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(label_bala)
-                .addContainerGap(772, Short.MAX_VALUE))
+                panelEscenarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEscenarioLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addContainerGap(772, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEscenario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelEscenario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEscenario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelEscenario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         panelEscenario.getAccessibleContext().setAccessibleParent(panelEscenario);
@@ -284,17 +276,29 @@ public class Escenario extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {                                 
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {
+
+        boolean arriba;
+        boolean abajo;
+        boolean derecha;
+        boolean izquierda;
 
         System.out.println(evt);
         System.out.println(contBalas);
         switch (evt.getKeyCode()) {
 
             case 32:
-                disp.disparar();
-                
+
+                disp = new Disparo(personajeX, personajeY);
+                contBalas = disp.cargador(contBalas);
+
                 break;
             case 37:    //izq
+                arriba = false;
+                abajo = false;
+                derecha = false;
+                izquierda = true;
+
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeI));
                 System.out.println(cargador);
                 if (escMatriz[personajeX - 1][personajeY] != Contenedor.muro) {
@@ -398,6 +402,12 @@ public class Escenario extends JFrame {
                 System.out.println(contVida);
                 break;
             case 39:    //der
+
+                arriba = false;
+                abajo = false;
+                derecha = true;
+                izquierda = false;
+
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeD));
 
                 if (escMatriz[personajeX + 1][personajeY] != Contenedor.muro) {
@@ -501,12 +511,18 @@ public class Escenario extends JFrame {
                 System.out.println(contVida);
                 break;
             case 38:    //arr
+
+                arriba = true;
+                abajo = false;
+                derecha = false;
+                izquierda = false;
+
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeA));
 
                 if (escMatriz[personajeX][personajeY - 1] != Contenedor.muro) {
                     if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieD) {
                         if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieI) {
-                            
+
                             if (cargador == true) {
                                 escMatriz[personajeX][personajeY - 1] = Contenedor.personajeA;
                                 escMatriz[personajeX][personajeY] = Contenedor.suelo;
@@ -604,6 +620,12 @@ public class Escenario extends JFrame {
                 System.out.println(contVida);
                 break;
             case 40:    //ab
+
+                arriba = false;
+                abajo = true;
+                derecha = false;
+                izquierda = false;
+
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeAb));
 
                 if (escMatriz[personajeX][personajeY + 1] != Contenedor.muro) {
@@ -708,8 +730,7 @@ public class Escenario extends JFrame {
                 break;
         }
 
-
-    }                                
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -744,7 +765,6 @@ public class Escenario extends JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel label_bala;
     private javax.swing.JPanel panelEscenario;
     // End of variables declaration                   
 }

@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 public class CrearEscenario {
 
     CargarMapa map = new CargarMapa();
-    int numeros;
-    int[][] esc = new int[20][22];
 
     public CrearEscenario() {
-
+        
     }
-
+    int numeros;
+    int[][] esc = new int[20][22];
+    
     public int[][] crearEscenario(int opc) {
         esc=map.devMapa(opc);
         return esc;
