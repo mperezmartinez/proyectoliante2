@@ -17,6 +17,8 @@ public class CargarMapa {
         mapaNombre="mapa1.txt";
     } else if (opc==2){
         mapaNombre="mapa2.txt";
+    }else if (opc==3){
+        mapaNombre="mapa3.txt";
     }
         File fichero = new File(mapaNombre);
         Scanner scan = null;

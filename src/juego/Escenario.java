@@ -42,7 +42,7 @@ public class Escenario extends JFrame {
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     ReproductorIntro play = new ReproductorIntro();
-    ReproducirDisparo playD = new ReproducirDisparo();
+    Reproducir playD = new Reproducir();
 
     public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
@@ -387,6 +387,7 @@ public class Escenario extends JFrame {
 
                             if (escMatriz[validarMX][validarMY] == Contenedor.personajeI) {
                                 contador++;
+                                playD.sonidoCoin();
                                 validarMX = 0;
                                 validarMY = 0;
                                 Marcador();
@@ -395,6 +396,7 @@ public class Escenario extends JFrame {
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeI) {
                                 if (contBalas < 6) {
                                     contBalas++;
+                                    playD.sonidoRecarga();
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
@@ -410,9 +412,11 @@ public class Escenario extends JFrame {
 
                             System.out.println("C: " + contador);
                         } else {
+                            playD.sonidoDaño();
                             contVida--;
                         }
                     } else {
+                        playD.sonidoDaño();
                         contVida--;
                     }
                 } else {
@@ -497,6 +501,7 @@ public class Escenario extends JFrame {
 
                             if (escMatriz[validarMX][validarMY] == Contenedor.personajeD) {
                                 contador++;
+                                playD.sonidoCoin();
                                 validarMX = 0;
                                 validarMY = 0;
                                 Marcador();
@@ -505,6 +510,7 @@ public class Escenario extends JFrame {
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeD) {
                                 if (contBalas < 6) {
                                     contBalas++;
+                                    playD.sonidoRecarga();
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
@@ -520,9 +526,11 @@ public class Escenario extends JFrame {
 
                             System.out.println("C: " + contador);
                         } else {
+                            playD.sonidoDaño();
                             contVida--;
                         }
                     } else {
+                        playD.sonidoDaño();
                         contVida--;
                     }
                 } else {
@@ -609,6 +617,7 @@ public class Escenario extends JFrame {
 
                             if (escMatriz[validarMX][validarMY] == Contenedor.personajeA) {
                                 contador++;
+                                playD.sonidoCoin();
                                 validarMX = 0;
                                 validarMY = 0;
                                 Marcador();
@@ -617,6 +626,7 @@ public class Escenario extends JFrame {
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeA) {
                                 if (contBalas < 6) {
                                     contBalas++;
+                                    playD.sonidoRecarga();
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
@@ -631,9 +641,11 @@ public class Escenario extends JFrame {
 
                             System.out.println("C: " + contador);
                         } else {
+                            playD.sonidoDaño();
                             contVida--;
                         }
                     } else {
+                        playD.sonidoDaño();
                         contVida--;
                     }
                 } else {
@@ -719,6 +731,7 @@ public class Escenario extends JFrame {
 
                             if (escMatriz[validarMX][validarMY] == Contenedor.personajeAb) {
                                 contador++;
+                                playD.sonidoCoin();
                                 validarMX = 0;
                                 validarMY = 0;
                                 Marcador();
@@ -727,6 +740,7 @@ public class Escenario extends JFrame {
                             if (escMatriz[validarBX][validarBY] == Contenedor.personajeAb) {
                                 if (contBalas < 6) {
                                     contBalas++;
+                                    playD.sonidoRecarga();
                                     validarBX = 0;
                                     validarBY = 0;
                                     System.out.println(contBalas);
@@ -742,9 +756,11 @@ public class Escenario extends JFrame {
                             System.out.println("C: " + contador);
 
                         } else {
+                            playD.sonidoDaño();
                             contVida--;
                         }
                     } else {
+                        playD.sonidoDaño();
                         contVida--;
                     }
                 } else {

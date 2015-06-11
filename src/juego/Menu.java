@@ -75,7 +75,7 @@ public class Menu implements ActionListener{
             opc=1;
         }else if(mapa.getSelectedItem().equals("Mapa 2")){
             opc=2;
-        }else{
+        }else if(mapa.getSelectedItem().equals("Mapa 3")){
             opc=3;
         }
         

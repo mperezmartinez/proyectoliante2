@@ -20,7 +20,7 @@ public class Disparo {
     boolean colision;
     int distancia = 8;
     
-    ReproducirDisparo playD = new ReproducirDisparo();
+    Reproducir playD = new Reproducir();
 
     public int getX() {
         return x;
