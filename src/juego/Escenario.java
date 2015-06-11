@@ -1,6 +1,8 @@
 package juego;
 
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,7 +41,8 @@ public class Escenario extends JFrame {
     Disparo disp = null;
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
-    Reproductor play = new Reproductor();
+    ReproductorIntro play = new ReproductorIntro();
+    ReproducirDisparo playD = new  ReproducirDisparo();
 
     public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
@@ -59,7 +62,7 @@ public class Escenario extends JFrame {
 
         Vida();
         
-        play.sonido();
+        //play.sonido();
 
     }
 
@@ -238,7 +241,7 @@ public class Escenario extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+                           
     private void initComponents() {
 
         panelEscenario = new javax.swing.JPanel();
@@ -247,7 +250,15 @@ public class Escenario extends JFrame {
         setTitle("DUNGEON and ZOMBIES");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                formKeyReleased(evt);
+                try {
+                    formKeyReleased(evt);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -283,7 +294,7 @@ public class Escenario extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {
+    private void formKeyReleased(java.awt.event.KeyEvent evt) throws FileNotFoundException, JavaLayerException, InterruptedException {
 
         System.out.println(evt);
         System.out.println(contBalas);
@@ -292,6 +303,7 @@ public class Escenario extends JFrame {
             case 32:
 
                 disp = new Disparo(personajeX, personajeY, escenario, escMatriz, panelEscenario, arriba, abajo, derecha, izquierda);
+                playD.sonido();
                 contBalas = disp.cargador(contBalas);
                 Cargador(contBalas);
 

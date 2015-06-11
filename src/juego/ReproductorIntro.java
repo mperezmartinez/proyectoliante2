@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-public class Reproductor {
+public class ReproductorIntro {
 
  static boolean pausa = false;
  
@@ -14,8 +14,11 @@ public class Reproductor {
          JavaLayerException, InterruptedException {
       final Player pl = new Player(new FileInputStream(
             "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/Dragula.mp3"));
+      
+      
  
       new Thread() {
+         @Override
          public void run() {
             try {
                while (true) {
@@ -30,12 +33,13 @@ public class Reproductor {
             }
          }
       }.start();
+      
  
-      Thread.sleep(1000);
-      pausa = true;
-      System.out.println("pausado");
-      Thread.sleep(500);
-      pausa = false;
+     
    }
+   
+   public void pararSonido(){
+     
+}
 }
 

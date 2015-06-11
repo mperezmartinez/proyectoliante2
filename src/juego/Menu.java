@@ -25,9 +25,11 @@ public class Menu implements ActionListener{
     int opc;
     
     Juego juego = new Juego();
-
-    public Menu(int opc) {
+    ReproductorIntro play = new ReproductorIntro();
+    
+    public Menu(int opc) throws FileNotFoundException, JavaLayerException, InterruptedException {
         
+        play.sonido();
         this.opc=opc;
         
         marco = new JFrame();
@@ -68,7 +70,7 @@ public class Menu implements ActionListener{
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { 
         if(mapa.getSelectedItem().equals("Mapa 1")){
             opc=1;
         }else if(mapa.getSelectedItem().equals("Mapa 2")){

@@ -8,7 +8,7 @@ public class Juego {
     static int opc;
     CargarMapa map = new CargarMapa();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, JavaLayerException, InterruptedException {
         
         Menu menu = new Menu(opc);
 
