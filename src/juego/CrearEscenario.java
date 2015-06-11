@@ -27,6 +27,8 @@ public class CrearEscenario {
         switch (nImg) {
             case Contenedor.suelo:
                 return new ImageIcon(getClass().getResource("/Imagenes/C.png"));
+            case Contenedor.sueloSangre:
+                return new ImageIcon(getClass().getResource("/Imagenes/CS.png"));
             case Contenedor.muro:
                 return new ImageIcon(getClass().getResource("/Imagenes/M.png"));
             case Contenedor.personajeD:
@@ -55,8 +57,6 @@ public class CrearEscenario {
                 return new ImageIcon(getClass().getResource("/Imagenes/BI.png"));
             case Contenedor.disparo:
                 return new ImageIcon(getClass().getResource("/Imagenes/D.png"));
-            case Contenedor.personajeAbG:
-                return new ImageIcon(getClass().getResource("/Imagenes/PAb.gif"));
             default:
                 return new ImageIcon(getClass().getResource("/Imagenes/C.png"));
         }

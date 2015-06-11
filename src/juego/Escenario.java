@@ -42,12 +42,12 @@ public class Escenario extends JFrame {
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     ReproductorIntro play = new ReproductorIntro();
-    ReproducirDisparo playD = new  ReproducirDisparo();
+    ReproducirDisparo playD = new ReproducirDisparo();
 
     public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
         initComponents();
-        
+
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
 
         System.out.println(opc);
@@ -61,9 +61,8 @@ public class Escenario extends JFrame {
         Cargador(contBalas);
 
         Vida();
-        
-        //play.sonido();
 
+        //play.sonidoDisp();
     }
 
     private Escenario() {
@@ -241,7 +240,7 @@ public class Escenario extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
-                           
+
     private void initComponents() {
 
         panelEscenario = new javax.swing.JPanel();
@@ -301,13 +300,19 @@ public class Escenario extends JFrame {
         switch (evt.getKeyCode()) {
 
             case 32:
+                if (contBalas > 0) {
+                    playD.sonidoDisp();
+                    disp = new Disparo(personajeX, personajeY);
+                    contBalas = disp.cargador(contBalas);
+                    Cargador(contBalas);
+                    disp.movdisparo(escenario, escMatriz, panelEscenario, arriba, abajo, derecha, izquierda);
 
-                disp = new Disparo(personajeX, personajeY, escenario, escMatriz, panelEscenario, arriba, abajo, derecha, izquierda);
-                playD.sonido();
-                contBalas = disp.cargador(contBalas);
-                Cargador(contBalas);
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO HAY MUNICION");
+                }
 
                 break;
+
             case 37:    //izq
                 arriba = false;
                 abajo = false;
@@ -413,6 +418,7 @@ public class Escenario extends JFrame {
                 } else {
                     //sonido 
                 }
+
                 Vida();
                 System.out.println(contVida);
                 break;
@@ -522,6 +528,7 @@ public class Escenario extends JFrame {
                 } else {
                     //sonido 
                 }
+
                 Vida();
                 System.out.println(contVida);
                 break;
@@ -535,6 +542,7 @@ public class Escenario extends JFrame {
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeA));
 
                 if (escMatriz[personajeX][personajeY - 1] != Contenedor.muro) {
+
                     if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieD) {
                         if (escMatriz[personajeX][personajeY - 1] != Contenedor.zombieI) {
 
@@ -631,6 +639,7 @@ public class Escenario extends JFrame {
                 } else {
                     //sonido 
                 }
+
                 Vida();
                 System.out.println(contVida);
                 break;
@@ -644,6 +653,7 @@ public class Escenario extends JFrame {
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeAb));
 
                 if (escMatriz[personajeX][personajeY + 1] != Contenedor.muro) {
+
                     if (escMatriz[personajeX][personajeY + 1] != Contenedor.zombieD) {
                         if (escMatriz[personajeX][personajeY + 1] != Contenedor.zombieI) {
 
@@ -740,6 +750,7 @@ public class Escenario extends JFrame {
                 } else {
                     //sonido 
                 }
+
                 Vida();
                 System.out.println(contVida);
                 break;
