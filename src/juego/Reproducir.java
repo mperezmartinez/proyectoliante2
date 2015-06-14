@@ -13,7 +13,7 @@ public class Reproducir {
     public void sonidoDisp() throws FileNotFoundException,
             JavaLayerException, InterruptedException {
         final Player pl = new Player(new FileInputStream(
-                "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/disparo.mp3"));
+                "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\disparo.mp3"));
 
         new Thread() {
             @Override
@@ -37,7 +37,7 @@ public class Reproducir {
     public void sonidoDispM() throws FileNotFoundException,
             JavaLayerException, InterruptedException {
         final Player pl = new Player(new FileInputStream(
-                "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/dispM.mp3"));
+                "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\dispM.mp3"));
 
         new Thread() {
             @Override
@@ -60,7 +60,7 @@ public class Reproducir {
     public void sonidoRecarga() throws FileNotFoundException,
             JavaLayerException, InterruptedException {
         final Player pl = new Player(new FileInputStream(
-                "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/recarga.mp3"));
+                "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\recarga.mp3"));
 
         new Thread() {
             @Override
@@ -83,7 +83,7 @@ public class Reproducir {
     public void sonidoCoin() throws FileNotFoundException,
             JavaLayerException, InterruptedException {
         final Player pl = new Player(new FileInputStream(
-                "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/coin.mp3"));
+                "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\coin.mp3"));
 
         new Thread() {
             @Override
@@ -106,7 +106,7 @@ public class Reproducir {
     public void sonidoDaño() throws FileNotFoundException,
             JavaLayerException, InterruptedException {
         final Player pl = new Player(new FileInputStream(
-                "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/golpe.mp3"));
+                "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\golpe.mp3"));
 
         new Thread() {
             @Override

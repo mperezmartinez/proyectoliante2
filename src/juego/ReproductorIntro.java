@@ -13,7 +13,7 @@ public class ReproductorIntro {
    public void sonido() throws FileNotFoundException,
          JavaLayerException, InterruptedException {
       final Player pl = new Player(new FileInputStream(
-            "C:/Users/Aitor/Desktop/Programas/proyecto/Juego/src/Sonidos/fondo.mp3"));
+            "C:\\Users\\Miguel\\Documents\\NetBeansProjects\\proyectoComplicado\\src\\Sonidos\\fondo.mp3"));
       
       
  

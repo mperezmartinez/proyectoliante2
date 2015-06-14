@@ -1,5 +1,7 @@
 package juego;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,7 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javazoom.jl.decoder.JavaLayerException;
+import static juego.BaseDatos.insertar;
 
 public class Escenario extends JFrame {
 
@@ -15,6 +19,9 @@ public class Escenario extends JFrame {
     int numFilas = 22;
     private int personajeX = 2;
     private int personajeY = 2;
+
+    private int zombie1X;
+    private int zombie1Y;
 
     boolean cargador = true;
     int contador = 0;
@@ -34,16 +41,22 @@ public class Escenario extends JFrame {
     boolean abajo = false;
     boolean derecha = true;
     boolean izquierda = false;
+    public Timer timer;
+    public Timer timer2;
 
     private int[][] escMatriz = new int[numColumnas][numFilas];
     JLabel[][] escenario = new JLabel[numColumnas][numFilas];
 
+    Menu men = new Menu();
     Disparo disp = null;
+    Zombies zom = new Zombies();
+    BaseDatos bas = new BaseDatos();
     CargarMapa map = new CargarMapa();
     CrearEscenario crea = new CrearEscenario();
     ReproductorIntro play = new ReproductorIntro();
     Reproducir playD = new Reproducir();
 
+    
     public Escenario(int opc) throws JavaLayerException, FileNotFoundException, InterruptedException {
 
         initComponents();
@@ -62,10 +75,31 @@ public class Escenario extends JFrame {
 
         Vida();
 
-        //play.sonidoDisp();
+        timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                zom.genzombie(escenario, escMatriz);
+
+                if (contador == 4) {
+                    timer.stop();
+                    timer2.start();
+                }
+            }
+        });
+
+        timer2 = new Timer(1500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                zom.genzombie(escenario, escMatriz);
+
+            }
+        });
+
+        timer.start();
+
     }
 
-    private Escenario() {
+    Escenario() {
 
     }
 
@@ -114,6 +148,10 @@ public class Escenario extends JFrame {
             case 7:
                 escenario[3][20].setIcon(new ImageIcon(getClass().getResource("/Imagenes/siete.png")));
                 panelEscenario.add(escenario[3][20]);
+                JOptionPane.showMessageDialog(this, "Has Sobrevivido");
+ 
+                insertar(contador);
+                
                 break;
         }
     }
@@ -138,6 +176,12 @@ public class Escenario extends JFrame {
 
             JOptionPane.showMessageDialog(null, "HAS MUERTO");
 
+            insertar(contador);
+            
+            
+            
+            men.marco.setVisible(true);
+            
         }
     }
 
@@ -547,6 +591,7 @@ public class Escenario extends JFrame {
                 derecha = false;
                 izquierda = false;
 
+                System.out.println("zombiex" + zombie1X + "zombieY" + zombie1Y);
                 escenario[personajeX][personajeY].setIcon(crea.obtenerImagen(Contenedor.personajeA));
 
                 if (escMatriz[personajeX][personajeY - 1] != Contenedor.muro) {

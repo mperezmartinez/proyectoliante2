@@ -10,36 +10,36 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javazoom.jl.decoder.JavaLayerException;
 
-public class Menu implements ActionListener{
-
+public class Menu implements ActionListener {
+    
     JFrame marco;
     JPanel panel, panelA, panelB, panelC;
     JLabel label;
-    JButton jugar,salir;
+    JButton jugar, salir;
     JComboBox mapa;
-    JTable tabla;
-    JScrollPane scroll;
-    DefaultTableModel dtm;
-    String[][] datos;
-    String[] campos = {"NOMBRE", "APELLIDOS", "CURSO"};
+ 
     int opc;
     
     Juego juego = new Juego();
     ReproductorIntro play = new ReproductorIntro();
+
+    public Menu() {
+    }
+    
+    
+    
     
     public Menu(int opc) throws FileNotFoundException, JavaLayerException, InterruptedException {
         
         play.sonido();
-        this.opc=opc;
+        this.opc = opc;
         
         marco = new JFrame();
         panel = new JPanel();
         label = new JLabel();
         jugar = new JButton(" JUGAR ");
-        salir= new JButton(" SALIR ");
+        salir = new JButton(" SALIR ");
         mapa = new JComboBox();
-        
-        
         
         marco.add(panel);
         panel.add(jugar);
@@ -51,8 +51,6 @@ public class Menu implements ActionListener{
         mapa.addItem("Mapa 2");
         mapa.addItem("Mapa 3");
         
-        
-        
         marco.setSize(400, 400);
         marco.setResizable(false);
         marco.setLocationRelativeTo(null);
@@ -60,33 +58,36 @@ public class Menu implements ActionListener{
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         label.setIcon(new ImageIcon(getClass().getResource("/Imagenes/zombies.png")));
-
+        
         marco.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoG.png")).getImage());
         
         jugar.addActionListener(this);
-        salir.addActionListener(this);
-
+        salir.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.exit(0);
+            }
+        });
     }
-
-
+    
     @Override
-    public void actionPerformed(ActionEvent e) { 
-        if(mapa.getSelectedItem().equals("Mapa 1")){
-            opc=1;
-        }else if(mapa.getSelectedItem().equals("Mapa 2")){
-            opc=2;
-        }else if(mapa.getSelectedItem().equals("Mapa 3")){
-            opc=3;
+    public void actionPerformed(ActionEvent e) {
+        if (mapa.getSelectedItem().equals("Mapa 1")) {
+            opc = 1;
+        } else if (mapa.getSelectedItem().equals("Mapa 2")) {
+            opc = 2;
+        } else if (mapa.getSelectedItem().equals("Mapa 3")) {
+            opc = 3;
         }
         
         try {
             juego.ejecutar(opc);
             marco.setVisible(false);
         } catch (Exception ex) {
-           
+            
         }
+        
     }
-
-
-
+    
 }
